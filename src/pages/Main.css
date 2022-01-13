@@ -1,0 +1,47 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+}
+.input > input {
+  padding: 5px;
+  font-size: 20px;
+  margin: 5px 0px;
+}
+.input > button {
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.chats {
+  text-align: center;
+  font-size: 25px;
+  margin: 10px 0px;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.msg-container {
+  border-radius: 10px;
+  width: 300px;
+  margin: 10px 0px;
+}
+
+.msg-sent {
+  background-color: gray;
+  color: black;
+}
+.msg-recieved {
+  background-color: #3856ff;
+  color: whitesmoke;
+}

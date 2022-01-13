@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
+import "./App.css";
+import Chats from "./pages/Chats";
+import Main from "./pages/Main";
+
+const channel = new BroadcastChannel("main");
 
 function App() {
+  const [sent, setSent] = useState([]);
+  const [recieved, setRecieved] = useState([]);
+
+  useEffect(() => {
+    channel.onmessage = ({ data }) => {
+      setRecieved((prevState) => [...prevState, { ...data, type: "recieved" }]);
+    };
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Main setSent={setSent} channel={channel} />
+      <Chats messages={sent.concat(recieved)} sent={sent} recieved={recieved} />
     </div>
   );
 }
